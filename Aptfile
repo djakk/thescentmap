@@ -51,3 +51,6 @@ python-qt4
 python-lxml 
 python-six 
 pip
+
+default-jre
+default-jdk
