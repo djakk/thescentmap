@@ -1,3 +1,3 @@
 worker: ls -la
 
-web: service apache2 restart
+web: vendor/bin/heroku-php-apache2
