@@ -1,4 +1,5 @@
 libboost-all-dev 
+
 git-core 
 tar 
 unzip 
@@ -33,3 +34,8 @@ lua5.1
 liblua5.1-dev 
 libgeotiff-epsg 
 node-carto
+
+postgresql 
+postgresql-contrib 
+postgis 
+postgresql-9.5-postgis-2.2
