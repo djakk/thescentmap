@@ -45,3 +45,9 @@ libgdal1-dev
 libmapnik-dev 
 mapnik-utils 
 python-mapnik
+
+python-numpy 
+python-qt4 
+python-lxml 
+python-six 
+pip
