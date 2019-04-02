@@ -39,3 +39,9 @@ postgresql
 postgresql-contrib 
 postgis 
 postgresql-9.5-postgis-2.2
+
+gdal-bin 
+libgdal1-dev 
+libmapnik-dev 
+mapnik-utils 
+python-mapnik
