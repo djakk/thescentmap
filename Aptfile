@@ -52,5 +52,5 @@ python-lxml
 python-six 
 pip
 
-default-jre
-default-jdk
+#default-jre
+#default-jdk
