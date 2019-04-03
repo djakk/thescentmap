@@ -11,7 +11,7 @@ echo "installer mod_tile"
 ./autogen.sh
 ./configure
 make
-make install
-make install-mod_tile
-ldconfig
+sudo make install
+sudo make install-mod_tile
+sudo ldconfig
 echo "fin de installer mod_tile"
