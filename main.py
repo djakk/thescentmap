@@ -40,7 +40,7 @@ def theCallbackFunction(ch, method, properties, body):
     # datas are ready inside the postgresql database : send a response back to NodeJS
     the_connection = pika.BlockingConnection(params)
     the_channel = the_connection.channel()
-    the_channel.queue_declare(queue='myQueue4', durable=False)
+    #the_channel.queue_declare(queue='myQueue4', durable=False)
     the_channel.basic_publish(exchange='', routing_key='myQueue4', body='the body')
     return
 
@@ -49,10 +49,10 @@ print("connection …")
 connection = pika.BlockingConnection(params) # Connect to CloudAMQP
 print("channel …")
 channel = connection.channel() # start a channel
-#channel.queue_declare(queue='myQueue') # Declare a queue
+channel.queue_declare(queue='myQueue4') # Declare a queue
 
 print("channel.basic_consume …")
-channel.basic_consume('myQueue4', theCallbackFunction, auto_ack=False) # auto_ack=False <- if 'myQueue' does not exists, do not sent a 404 error
+channel.basic_consume('myQueue4', theCallbackFunction, auto_ack=True) # auto_ack=True <- if 'myQueue' does not exists, do not sent a 404 error
 
 print("channel.start_consuming …")
 channel.start_consuming() # start consuming (blocks)
