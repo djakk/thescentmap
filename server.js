@@ -16,8 +16,8 @@ var port = process.env.PORT || 3000;
 http.createServer(function(req, res) {
   
   // trying to call python function aPrintingFunction through CloudAMPQ (queueing add-on)
-  var q = 'myQueue2';
-  var q3 = 'myQueue3';
+  var q = 'myQueue4';
+  var q3 = 'myQueue4';
   
   var url = process.env.CLOUDAMQP_URL || "amqp://localhost";
   console.log("ampqlib.connect …");
