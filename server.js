@@ -75,7 +75,7 @@ http.createServer(function(req, res) {
   s += '  <LineSymbolizer stroke="[colour]" />';
   s += ' </Rule>';
   s += ' <Rule>';
-  s += '  <TextSymbolizer face-name="DejaVu Sans Book">[the_text]</TextSymbolizer>';
+  s += '  <TextSymbolizer placement="line" face-name="DejaVu Sans Book">[the_text]</TextSymbolizer>';
   s += ' </Rule>';
   s += '</Style>';
   s += '</Map>';
