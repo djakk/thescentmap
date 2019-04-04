@@ -1,2 +1,4 @@
+pika
+shapely
 psycopg2
 newick
