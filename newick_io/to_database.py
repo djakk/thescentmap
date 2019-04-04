@@ -17,6 +17,7 @@ def save_to_postgresql(the_tree, the_url_to_the_database):
   """
   print("inside 'save_to_postgresql'")
   print(the_tree.name)
+  print(the_tree.ascii_art(show_internal=False, strict=True))
     
   
   the_connection = psycopg2.connect(the_url_to_the_database)
