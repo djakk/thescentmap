@@ -3,6 +3,7 @@
 
 import sys
 import os
+import io
 
 import pika
 import newick
