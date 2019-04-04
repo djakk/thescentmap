@@ -52,7 +52,7 @@ channel = connection.channel() # start a channel
 #channel.queue_declare(queue='myQueue') # Declare a queue
 
 print("channel.basic_consume …")
-channel.basic_consume(theCallbackFunction, queue='myQueue4', no_ack=False) # no_ack=False <- if 'myQueue2' does not exists, do not sent a 404 error
+channel.basic_consume('myQueue4', theCallbackFunction, auto_ack=True) # auto_ack=True <- if 'myQueue' does not exists, do not sent a 404 error
 
 print("channel.start_consuming …")
 channel.start_consuming() # start consuming (blocks)
