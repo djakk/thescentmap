@@ -57,8 +57,8 @@ VALUES (%(geometry)s, %(properties)s);\
     the_counter += 1
     
     # recursive call
-    return save_to_postgresql(a_sub_tree, the_url_to_the_database)
+    save_to_postgresql(a_sub_tree, the_url_to_the_database)
   
   the_connection.commit()
   the_connection.close()
-  return
+  
