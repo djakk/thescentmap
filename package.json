@@ -1,0 +1,7 @@
+{
+  "name" : "thescentmap", 
+  "dependencies": {
+      "mapnik": "git://github.com/mapnik/node-mapnik.git", 
+      "amqplib": "*"
+  }
+}
