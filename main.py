@@ -40,8 +40,8 @@ def theCallbackFunction(ch, method, properties, body):
     # datas are ready inside the postgresql database : send a response back to NodeJS
     the_connection = pika.BlockingConnection(params)
     the_channel = the_connection.channel()
-    the_channel.queue_declare(queue='myQueue3', durable=False)
-    the_channel.basic_publish(exchange='', routing_key='myQueue3', body='the body')
+    the_channel.queue_declare(queue='myQueue4', durable=False)
+    the_channel.basic_publish(exchange='', routing_key='myQueue4', body='the body')
     return
 
 
@@ -52,7 +52,7 @@ channel = connection.channel() # start a channel
 #channel.queue_declare(queue='myQueue') # Declare a queue
 
 print("channel.basic_consume …")
-channel.basic_consume(theCallbackFunction, queue='myQueue2', no_ack=False) # no_ack=False <- if 'myQueue2' does not exists, do not sent a 404 error
+channel.basic_consume(theCallbackFunction, queue='myQueue4', no_ack=False) # no_ack=False <- if 'myQueue2' does not exists, do not sent a 404 error
 
 print("channel.start_consuming …")
 channel.start_consuming() # start consuming (blocks)
