@@ -2,4 +2,4 @@
 
 import newick
 
-print "Hello !"
+print("Hello !")
