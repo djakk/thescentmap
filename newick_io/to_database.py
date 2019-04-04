@@ -2,6 +2,7 @@ import psycopg2
 import psycopg2.extras
 
 import shapely
+import shapely.geometry
 
 
 def save_to_postgresql(the_tree, the_url_to_the_database):
@@ -25,7 +26,7 @@ def save_to_postgresql(the_tree, the_url_to_the_database):
   the_cursor.close()
   
   # put the descendants on an half-circle and the father in the middle of the halfed circle
-  the_geometry_of_the_center = shapely.geometry.point.Point(0, 0)
+  the_geometry_of_the_center = shapely.geometry.Point(0, 0)
   
   the_counter = 1
   for a_sub_tree in the_tree.descendants:
@@ -33,7 +34,7 @@ def save_to_postgresql(the_tree, the_url_to_the_database):
     if the_counter >= 10000:
       break
     
-    the_geometry = shapely.geometry.LineString(the_geometry_of_the_center, shapely.geometry.point.Point(100, 100))
+    the_geometry = shapely.geometry.LineString(the_geometry_of_the_center, shapely.geometry.Point(100, 100))
     
     the_cursor = the_connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
     psycopg2.extras.register_hstore(the_cursor)
