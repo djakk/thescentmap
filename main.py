@@ -3,5 +3,3 @@
 import newick
 
 print "Hello !"
-
-return 0
