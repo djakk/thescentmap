@@ -75,7 +75,7 @@ http.createServer(function(req, res) {
   s += '  <LineSymbolizer stroke="[colour]" />';
   s += ' </Rule>';
   s += ' <Rule>';
-  s += '  <TextSymbolizer>[the_text]<TextSymbolizer/>';
+  s += '  <TextSymbolizer>[the_text]</TextSymbolizer>';
   s += ' </Rule>';
   s += '</Style>';
   s += '</Map>';
