@@ -74,6 +74,9 @@ http.createServer(function(req, res) {
   s += ' <Rule>';
   s += '  <LineSymbolizer stroke="[colour]" />';
   s += ' </Rule>';
+  s += ' <Rule>';
+  s += '  <TextSymbolizer>[the_text]<TextSymbolizer/>';
+  s += ' </Rule>';
   s += '</Style>';
   s += '</Map>';
   
@@ -91,14 +94,15 @@ http.createServer(function(req, res) {
     dbname: the_database_url.pathname.substring(1), 
     user: the_database_url.username,
     password: the_database_url.password, 
-    table: "(SELECT geometry, 'red' AS colour FROM mytable) AS roads", 
+    table: "(SELECT geometry, 'red' AS colour, properties->'name' AS the_text FROM mytable) AS roads", 
     geometry_field: 'geometry'
   };
   
   var the_points_datasource = new mapnik.Datasource(options);
   var the_points_layer = new mapnik.Layer('points\' layer', "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs");
   the_points_layer.datasource = the_points_datasource;
-  the_points_layer.styles = ['lines', 'points'];
+  //the_points_layer.styles = ['lines', 'points'];
+  the_points_layer.styles = ['lines'];
   map.add_layer(the_points_layer);
   
   console.log("creating the image …");
