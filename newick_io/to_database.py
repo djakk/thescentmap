@@ -34,7 +34,7 @@ def save_to_postgresql(the_tree, the_url_to_the_database):
     if the_counter >= 10000:
       break
     
-    the_geometry = shapely.geometry.LineString(the_geometry_of_the_center, shapely.geometry.Point(100, 100))
+    the_geometry = shapely.geometry.LineString([the_geometry_of_the_center, shapely.geometry.Point(100, 100)])
     
     the_cursor = the_connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
     psycopg2.extras.register_hstore(the_cursor)
