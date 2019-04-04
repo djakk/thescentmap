@@ -7,8 +7,8 @@ import os
 import pika
 import newick
 
-import .newick_io
-import .newick_io.to_database
+import newick_io
+import newick_io.to_database
 
 
 print("Coucou ! (from print)")
