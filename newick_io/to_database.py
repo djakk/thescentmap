@@ -21,14 +21,14 @@ def save_to_postgresql(the_tree, the_url_to_the_database):
   the_cursor = the_connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
   the_cursor.execute("""DELETE FROM myTable;""")
   the_cursor.close()
-  
-  the_osm_datas_as_records = the_osm_datas.to_dict('records')
-  
+    
   the_counter = 1
-  for a_record in the_osm_datas_as_records:
+  for a_sub_tree in the_tree.descendants:
     
     if the_counter >= 10000:
       break
+    
+    # put the descendants on an half-circle and the father in the middle of the halfed circle
     
     # work on the geometry column
     a_record["geometry"] = a_record["geometry"].wkb_hex
@@ -39,8 +39,8 @@ def save_to_postgresql(the_tree, the_url_to_the_database):
     psycopg2.extras.register_hstore(the_cursor)
     the_cursor.execute("""\
 INSERT INTO mytable 
-       ("osm_id", "osm_type", "geometry", "properties") 
-VALUES (%(id)s, %(osm_type)s, %(geometry)s, %(properties)s);\
+       ("geometry", "properties") 
+VALUES (%(geometry)s, %(properties)s);\
 """, a_record)
     the_cursor.close()
     
