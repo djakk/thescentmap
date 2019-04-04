@@ -2,20 +2,19 @@ import psycopg2
 import psycopg2.extras
 
 
-def save_to_postgresql(the_osm_datas, the_url_to_the_database):
+def save_to_postgresql(the_tree, the_url_to_the_database):
   """
-  the_osm_datas : only 4 columns : id (=osm_id), osm_type (=node, way or relation), properties (=dictionary {"highway": "secondary", "name": "blablabla"}), geometry
+  the_tree = newick object
   
   psql $DATABASE_URL -> 
     CREATE EXTENSION postgis;
     CREATE EXTENSION hstore;
     
-    CREATE TABLE "mytable" ("osm_id"  bigint, "osm_type"  text, "properties"  hstore, "geometry"  geometry);
+    CREATE TABLE "mytable" ("properties"  hstore, "geometry"  geometry);
   """
   print("inside 'save_to_postgresql'")
-  print(the_osm_datas)
-  #print(the_osm_datas.to_dict('records'))  
-  
+  print(the_tree.name)
+    
   
   the_connection = psycopg2.connect(the_url_to_the_database)
   
