@@ -57,24 +57,24 @@ VALUES (%(geometry)s, %(properties)s);\
   the_connection.close()
   
   
-  def calculate_the_geometries(the_tree):
-    """recursive function"""
-    try:
-      the_geometry_of_the_center = the_tree.geometry
-    except AttributeError:
-      the_geometry_of_the_center = shapely.geometry.Point(0, 0)
-      the_tree.geometry = the_geometry_of_the_center
+def calculate_the_geometries(the_tree):
+  """recursive function"""
+  try:
+    the_geometry_of_the_center = the_tree.geometry
+  except AttributeError:
+    the_geometry_of_the_center = shapely.geometry.Point(0, 0)
+    the_tree.geometry = the_geometry_of_the_center
     
-    the_counter = 1
-    
-    for a_sub_tree in the_tree.descendants:
+  the_counter = 1
 
-      the_sub_tree_longitude = the_geometry_of_the_center.coords[0][0] + 100 *the_counter
-      the_sub_tree_latitude = the_geometry_of_the_center.coords[0][1] + 100
-      the_sub_tree_last_point = shapely.geometry.Point(the_sub_tree_longitude, the_sub_tree_latitude)
-      #the_line_as_a_shapely_geometry = shapely.geometry.LineString([the_geometry_of_the_center, the_sub_tree_last_point])
-      a_sub_tree.geometry = the_sub_tree_last_point
-      calculate_the_geometries(a_sub_tree)
-      
-      the_counter += 1
+  for a_sub_tree in the_tree.descendants:
+
+    the_sub_tree_longitude = the_geometry_of_the_center.coords[0][0] + 100 *the_counter
+    the_sub_tree_latitude = the_geometry_of_the_center.coords[0][1] + 100
+    the_sub_tree_last_point = shapely.geometry.Point(the_sub_tree_longitude, the_sub_tree_latitude)
+    #the_line_as_a_shapely_geometry = shapely.geometry.LineString([the_geometry_of_the_center, the_sub_tree_last_point])
+    a_sub_tree.geometry = the_sub_tree_last_point
+    calculate_the_geometries(a_sub_tree)
+
+    the_counter += 1
 
