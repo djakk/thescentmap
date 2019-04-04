@@ -1,6 +1,11 @@
 #!/usr/bin/python
 
 import newick
+
+import sys
+sys.path.append('/usr/local/lib/python2.7/site-packages')
+sys.path.append('/app/.apt/usr/lib/python2.7/dist-packages/')
+
 import mapnik
 
 import io
