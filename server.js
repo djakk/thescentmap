@@ -113,7 +113,7 @@ http.createServer(function(req, res) {
     the_y = the_strings[3];
     the_z = the_strings[2];
     
-    var merc = new SphericalMercator({
+    var merc = new mercator.SphericalMercator({
       size: 256
     });
     var bbox = merc.bbox(parseInt(the_x),
