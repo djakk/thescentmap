@@ -107,11 +107,11 @@ http.createServer(function(req, res) {
     s += '</Style>';
     s += '</Map>';
     
-    the_strings = req.url.split('/'); // (http://)thescentmap.herokuapp.com/map/z/y/x.png
+    the_strings = req.url.split('/'); // (http://)thescentmap.herokuapp.com/map/z/x/y.png
     console.log("the_strings = ");
     console.log(the_strings);
-    the_x = the_strings[4].replace(".png", "");
-    the_y = the_strings[3];
+    the_y = the_strings[4].replace(".png", "");
+    the_x = the_strings[3];
     the_z = the_strings[2];
     console.log(the_x);
     console.log(the_y);
