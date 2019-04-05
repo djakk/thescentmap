@@ -1,10 +1,6 @@
 var mapnik = require('mapnik');
 var mapbox_sphericalmercator = require('@mapbox/sphericalmercator');
 
-console.log("mapbox_sphericalmercator");
-console.log(mapbox_sphericalmercator);
-console.log(mapbox_sphericalmercator.sphericalmercator);
-
 
 var http = require('http');
 var url = require('url');
@@ -118,7 +114,7 @@ http.createServer(function(req, res) {
     the_y = the_strings[3];
     the_z = the_strings[2];
     
-    var the_spherical_mercator = new mapbox_sphericalmercator.SphericalMercator({
+    var the_spherical_mercator = mapbox_sphericalmercator.SphericalMercator({
       size: 256
     });
     var bbox = the_spherical_mercator.bbox(parseInt(the_x),
