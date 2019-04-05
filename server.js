@@ -71,7 +71,7 @@ http.createServer(function(req, res) {
   
   res.writeHead(500, {'Content-Type': 'text/plain'});
   
-  if (!query || isEmpty(query)) {
+  if (!query) {
     try {
       res.writeHead(200, {
       'Content-Type': 'text/html'
