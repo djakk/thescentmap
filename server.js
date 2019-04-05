@@ -1,5 +1,5 @@
 var mapnik = require('mapnik');
-var mercator = require('@mapbox/sphericalmercator');
+var mapbox_sphericalmercator = require('@mapbox/sphericalmercator');
 
 var http = require('http');
 var url = require('url');
@@ -113,15 +113,15 @@ http.createServer(function(req, res) {
     the_y = the_strings[3];
     the_z = the_strings[2];
     
-    var merc = new mercator.SphericalMercator({
+    var the_spherical_mercator = new mapbox_sphericalmercator.SphericalMercator({
       size: 256
     });
-    var bbox = merc.bbox(parseInt(the_x),
-                         parseInt(the_y),
-                         parseInt(the_z), false);
+    var bbox = the_spherical_mercator.bbox(parseInt(the_x),
+                                           parseInt(the_y),
+                                           parseInt(the_z), false);
     
     // create map object
-    var map = new mapnik.Map(256, 256, mercator.srs);
+    var map = new mapnik.Map(256, 256, mapbox_sphericalmercator.srs);
     map.buffer_size(50);
     map.fromStringSync(s);
 
@@ -140,7 +140,7 @@ http.createServer(function(req, res) {
     };
 
     var the_points_datasource = new mapnik.Datasource(options);
-    var the_points_layer = new mapnik.Layer('points\' layer', mercator.srs);
+    var the_points_layer = new mapnik.Layer('points\' layer', mapbox_sphericalmercator.srs);
     the_points_layer.datasource = the_points_datasource;
     //the_points_layer.styles = ['lines', 'points'];
     the_points_layer.styles = ['lines'];
