@@ -126,7 +126,7 @@ http.createServer(function(req, res) {
                                            parseInt(the_z), false);
     
     // create map object
-    var map = new mapnik.Map(256, 256, mapbox_sphericalmercator.srs);
+    var map = new mapnik.Map(256, 256);
     map.buffer_size(50);
     map.fromStringSync(s);
 
@@ -145,7 +145,7 @@ http.createServer(function(req, res) {
     };
 
     var the_points_datasource = new mapnik.Datasource(options);
-    var the_points_layer = new mapnik.Layer('points\' layer', mapbox_sphericalmercator.srs);
+    var the_points_layer = new mapnik.Layer('points\' layer');
     the_points_layer.datasource = the_points_datasource;
     //the_points_layer.styles = ['lines', 'points'];
     the_points_layer.styles = ['lines'];
