@@ -71,7 +71,8 @@ http.createServer(function(req, res) {
   
   res.writeHead(500, {'Content-Type': 'text/plain'});
   
-  if (!query) {
+  
+  if (req.url.indexOf("map") == -1) {
     try {
       res.writeHead(200, {
       'Content-Type': 'text/html'
