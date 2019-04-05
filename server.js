@@ -1,5 +1,5 @@
 var mapnik = require('mapnik');
-var mapbox_sphericalmercator = require('@mapbox/sphericalmercator');
+var mapbox_sphericalmercator = require('@mapbox/sphericalmercator').sphericalmercator;
 
 var http = require('http');
 var url = require('url');
