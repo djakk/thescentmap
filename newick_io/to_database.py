@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf8 -*-
+
 import psycopg2
 import psycopg2.extras
 
