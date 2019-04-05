@@ -4,6 +4,8 @@ import psycopg2.extras
 import shapely
 import shapely.geometry
 
+import math
+
 
 def save_to_postgresql(the_tree, the_url_to_the_database):
   """
@@ -58,15 +60,18 @@ def calculate_the_geometries(the_tree, the_counter):
     the_tree.geometry = the_geometry_of_the_center
   
   the_number_of_descendants = len(the_tree.descendants)
+  the_other_counter = -1* the_number_of_descendants // 2
   
   for a_sub_tree in the_tree.descendants:
     
-    the_sub_tree_longitude = the_geometry_of_the_center.coords[0][0] + (100 *the_counter) / (10 *the_counter)
-    the_sub_tree_latitude = the_geometry_of_the_center.coords[0][1] + 100 / (10 *the_counter)
+    the_sub_tree_longitude = the_geometry_of_the_center.coords[0][0] + (100 / the_counter) *math.cos(the_other_counter * 3.14 / the_number_of_descendants)
+    the_sub_tree_latitude = the_geometry_of_the_center.coords[0][1] + (100 / the_counter) *math.sin(the_other_counter * 3.14 / the_number_of_descendants)
     the_sub_tree_last_point = shapely.geometry.Point(the_sub_tree_longitude, the_sub_tree_latitude)
     #the_line_as_a_shapely_geometry = shapely.geometry.LineString([the_geometry_of_the_center, the_sub_tree_last_point])
     a_sub_tree.geometry = the_sub_tree_last_point
     calculate_the_geometries(a_sub_tree, the_counter +1)
+    
+    the_other_counter += 1
 
 
 def save_a_tree_as_a_geometry_to_postgresql(the_tree, the_connection, the_counter):
