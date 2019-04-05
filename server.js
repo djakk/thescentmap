@@ -112,9 +112,13 @@ http.createServer(function(req, res) {
     the_x = the_strings[4].replace(".png", "");
     the_y = the_strings[3];
     the_z = the_strings[2];
-    var bbox = mercator.bbox(parseInt(the_x),
-                             parseInt(the_y),
-                             parseInt(the_z), false);
+    
+    var merc = new SphericalMercator({
+      size: 256
+    });
+    var bbox = merc.bbox(parseInt(the_x),
+                         parseInt(the_y),
+                         parseInt(the_z), false);
     
     // create map object
     var map = new mapnik.Map(256, 256, mercator.srs);
