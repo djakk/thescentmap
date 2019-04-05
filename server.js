@@ -82,7 +82,7 @@ http.createServer(function(req, res) {
           res.end('Not found: ' + req.url);      
     }
   } 
-  if false {
+  if (false) {
     // map with just a style
     // eventually the api will support adding styles in javascript (!)
     var s = '<Map srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">';
