@@ -1,4 +1,6 @@
 var mapnik = require('mapnik');
+var mercator = require('mapnik/sphericalmercator');
+
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
@@ -103,9 +105,18 @@ http.createServer(function(req, res) {
     s += ' </Rule>';
     s += '</Style>';
     s += '</Map>';
-  
+    
+    the_strings = req.url.split('/'); // (http://)thescentmap.herokuapp.com/map/z/y/x.png
+    the_x = the_strings[5].replace(".png", "");
+    the_y = the_strings[4];
+    the_z = the_strings[3];
+    var bbox = mercator.xyz_to_envelope(parseInt(the_x),
+                                        parseInt(the_y),
+                                        parseInt(the_z), false);
+    
     // create map object
-    var map = new mapnik.Map(256, 256);
+    var map = new mapnik.Map(256, 256, mercator.srs);
+    map.buffer_size(50);
     map.fromStringSync(s);
 
     console.log("creating the map …");
@@ -123,16 +134,14 @@ http.createServer(function(req, res) {
     };
 
     var the_points_datasource = new mapnik.Datasource(options);
-    var the_points_layer = new mapnik.Layer('points\' layer', "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs");
+    var the_points_layer = new mapnik.Layer('points\' layer', mercator.srs);
     the_points_layer.datasource = the_points_datasource;
     //the_points_layer.styles = ['lines', 'points'];
     the_points_layer.styles = ['lines'];
     map.add_layer(the_points_layer);
-
+    
     console.log("creating the image …");
-    map.zoomAll();
-    var the_image__for_the_map = new mapnik.Image(256, 256);
-    map.render(the_image__for_the_map, function(err,im) {
+    map.render(bbox, function(err,im) {
       if (err) {
         res.end(err.message);
       } else {
