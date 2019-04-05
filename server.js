@@ -127,7 +127,7 @@ http.createServer(function(req, res) {
     
     // create map object
     var map = new mapnik.Map(256, 256);
-    map.buffer_size(50);
+    //map.buffer_size(50);
     map.fromStringSync(s);
 
     console.log("creating the map …");
