@@ -1,6 +1,7 @@
 var mapnik = require('mapnik');
 var http = require('http');
 var url = require('url');
+var fs = require('fs');
 
 var ampqlib = require('amqplib');
 
@@ -81,7 +82,9 @@ http.createServer(function(req, res) {
     } catch (err) {
           res.end('Not found: ' + req.url);      
     }
-  } 
+  } else {
+       res.end(fs.readFileSync('./index.html'));
+  }
   if (false) {
     // map with just a style
     // eventually the api will support adding styles in javascript (!)
