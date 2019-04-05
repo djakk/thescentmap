@@ -78,12 +78,14 @@ http.createServer(function(req, res) {
       });
       if (req.url == '/') {
           res.end(fs.readFileSync('./index.html'));
+      } else {
+          res.end(fs.readFileSync('./' + req.url));      
       }
     } catch (err) {
           res.end('Not found: ' + req.url);      
     }
   } else {
-       res.end(fs.readFileSync('./index.html'));
+       res.end('Not found: ' + req.url);
   }
   if (false) {
     // map with just a style
