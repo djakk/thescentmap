@@ -36,11 +36,7 @@ def save_to_postgresql(the_tree, the_url_to_the_database):
     if the_counter >= 10000:
       break
     
-    the_sub_tree_longitude = the_geometry_of_the_center.coords[0][0] + 100 *the_counter
-    the_sub_tree_latitude = the_geometry_of_the_center.coords[0][1] + 100
-    the_sub_tree_last_point = shapely.geometry.Point(the_sub_tree_longitude, the_sub_tree_latitude)
-    the_line_as_a_shapely_geometry = shapely.geometry.LineString([the_geometry_of_the_center, the_sub_tree_last_point])
-    a_sub_tree.geometry = the_sub_tree_last_point
+    the_line_as_a_shapely_geometry = shapely.geometry.LineString([the_tree.geometry, a_sub_tree.geometry])
     
     the_cursor = the_connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
     psycopg2.extras.register_hstore(the_cursor)
