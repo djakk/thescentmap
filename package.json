@@ -3,6 +3,6 @@
   "dependencies": {
       "mapnik": "git://github.com/mapnik/node-mapnik.git", 
       "amqplib": "*", 
-      "sphericalmercator": "git://github.com/mapbox/sphericalmercator.git"
+      "@mapbox/sphericalmercator": "*"
   }
 }
