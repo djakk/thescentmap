@@ -114,7 +114,7 @@ http.createServer(function(req, res) {
     the_y = the_strings[3];
     the_z = the_strings[2];
     
-    var the_spherical_mercator = mapbox_sphericalmercator.SphericalMercator({
+    var the_spherical_mercator = mapbox_sphericalmercator({
       "size": 256
     });
     var bbox = the_spherical_mercator.bbox(parseInt(the_x),
