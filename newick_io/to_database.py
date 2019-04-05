@@ -39,15 +39,27 @@ def save_to_postgresql(the_tree, the_url_to_the_database):
   
   
 def calculate_the_geometries(the_tree, the_counter):
-  """recursive function"""
+  """
+  recursive function
+  coordinates of a circle : (x – a)² + (y – b)² = R² (center = (a,b))
+  -> x² + a² - 2ax + y² + a² - 2ay = R²
+  coordinates of a straight line : mx + ny + p = 0 ; 
+  passing through (a,b) : ma + nb + p = 0 -> p = -ma -nb -> equation : m(x - a) + n(y - b) = 0
+  
+  circle : r²(θ) - 2r(θ) * r° * cos(θ - φ) + r°² = a², center = (r°, φ), radius = a
+  simple circle : r(θ) = 100
+  simple straight line : θ = 45°
+  """
   the_geometry_of_the_center = shapely.geometry.Point(0, 0)
   try:
     the_geometry_of_the_center = the_tree.geometry
   except AttributeError:
     the_tree.geometry = the_geometry_of_the_center
   
+  the_number_of_descendants = len(the_tree.descendants)
+  
   for a_sub_tree in the_tree.descendants:
-
+    
     the_sub_tree_longitude = the_geometry_of_the_center.coords[0][0] + (100 *the_counter) / (10 *the_counter)
     the_sub_tree_latitude = the_geometry_of_the_center.coords[0][1] + 100 / (10 *the_counter)
     the_sub_tree_last_point = shapely.geometry.Point(the_sub_tree_longitude, the_sub_tree_latitude)
