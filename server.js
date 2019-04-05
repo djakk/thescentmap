@@ -113,10 +113,14 @@ http.createServer(function(req, res) {
     the_x = the_strings[4].replace(".png", "");
     the_y = the_strings[3];
     the_z = the_strings[2];
+    console.log(the_x);
+    console.log(the_y);
+    console.log(the_z);
     
     var the_spherical_mercator = mapbox_sphericalmercator({
       "size": 256
     });
+    console.log(the_spherical_mercator);
     var bbox = the_spherical_mercator.bbox(parseInt(the_x),
                                            parseInt(the_y),
                                            parseInt(the_z), false);
