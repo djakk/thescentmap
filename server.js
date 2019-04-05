@@ -85,9 +85,6 @@ http.createServer(function(req, res) {
           res.end('Not found: ' + req.url);      
     }
   } else {
-       res.end('Not found: ' + req.url);
-  }
-  if (false) {
     // map with just a style
     // eventually the api will support adding styles in javascript (!)
     var s = '<Map srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">';
@@ -107,7 +104,7 @@ http.createServer(function(req, res) {
     s += '</Map>';
   
     // create map object
-    var map = new mapnik.Map(1024, 1024);
+    var map = new mapnik.Map(256, 256);
     map.fromStringSync(s);
 
     console.log("creating the map …");
@@ -133,7 +130,7 @@ http.createServer(function(req, res) {
 
     console.log("creating the image …");
     map.zoomAll();
-    var the_image__for_the_map = new mapnik.Image(1024, 1024);
+    var the_image__for_the_map = new mapnik.Image(256, 256);
     map.render(the_image__for_the_map, function(err,im) {
       if (err) {
         res.end(err.message);
