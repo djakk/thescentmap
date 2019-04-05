@@ -8,11 +8,17 @@
             integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
             crossorigin=""></script>
     <link rel="stylesheet" href="/index.css"/>
-    <script src="index.js"></script>
 
  </head>
  
  <body>
-    <div id="mapid" onload="load_map()"></div>
+    <div id="mapid"></div>
+   <script>
+    var mymap = L.map('mapid').setView([0.0, 0.0], 13);
+    
+    L.tileLayer('https://thescentmap.herokuapp.com/map/{id}/{z}/{x}/{y}.png', {
+      maxZoom: 18
+    }).addTo(mymap);
+   </script>
  </body>
 </html>
