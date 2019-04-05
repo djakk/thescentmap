@@ -1,6 +1,6 @@
 var mapnik = require('mapnik');
 var http = require('http');
-//const url = require('url');
+var url = require('url');
 
 var ampqlib = require('amqplib');
 
@@ -27,9 +27,9 @@ http.createServer(function(req, res) {
   var q = 'myQueue4';
   var q3 = 'myQueue4';
   
-  var url = process.env.CLOUDAMQP_URL || "amqp://localhost";
+  var cloud_amqp_url = process.env.CLOUDAMQP_URL || "amqp://localhost";
   console.log("ampqlib.connect …");
-  var open = ampqlib.connect(url);
+  var open = ampqlib.connect(cloud_amqp_url);
   
   // Consumer
   console.log("Consumer …");
