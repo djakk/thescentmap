@@ -31,24 +31,8 @@ def save_to_postgresql(the_tree, the_url_to_the_database):
   the_cursor.close()
     
   the_counter = 1
-  for a_sub_tree in the_tree.descendants:
+  save_a_tree_as_a_geometry_to_postgresql(the_tree, the_connection, the_counter)
     
-    if the_counter >= 10000:
-      break
-    
-    the_line_as_a_shapely_geometry = shapely.geometry.LineString([the_tree.geometry, a_sub_tree.geometry])
-    
-    the_cursor = the_connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    psycopg2.extras.register_hstore(the_cursor)
-    the_cursor.execute("""\
-INSERT INTO mytable 
-       ("geometry", "properties") 
-VALUES (%(geometry)s, %(properties)s);\
-""", {"geometry" : the_line_as_a_shapely_geometry.wkb_hex, "properties" : {"name" : a_sub_tree.name}})
-    the_cursor.close()
-    
-    the_counter += 1
-  
   the_connection.commit()
   the_connection.close()
   
@@ -74,3 +58,25 @@ def calculate_the_geometries(the_tree):
 
     the_counter += 1
 
+
+def save_a_tree_as_a_geometry_to_postgresql(the_tree, the_connection, the_counter):
+  """recursive function"""
+  for a_sub_tree in the_tree.descendants:
+    
+    if the_counter >= 10000:
+      return
+    
+    the_line_as_a_shapely_geometry = shapely.geometry.LineString([the_tree.geometry, a_sub_tree.geometry])
+    
+    the_cursor = the_connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    psycopg2.extras.register_hstore(the_cursor)
+    the_cursor.execute("""\
+INSERT INTO mytable 
+       ("geometry", "properties") 
+VALUES (%(geometry)s, %(properties)s);\
+""", {"geometry" : the_line_as_a_shapely_geometry.wkb_hex, "properties" : {"name" : a_sub_tree.name}})
+    the_cursor.close()
+    
+    the_counter += 1
+    
+    save_a_tree_as_a_geometry_to_postgresql(a_sub_tree, the_connection, the_counter)
