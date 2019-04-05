@@ -59,10 +59,10 @@ VALUES (%(geometry)s, %(properties)s);\
   
 def calculate_the_geometries(the_tree):
   """recursive function"""
+  the_geometry_of_the_center = shapely.geometry.Point(0, 0)
   try:
     the_geometry_of_the_center = the_tree.geometry
   except AttributeError:
-    the_geometry_of_the_center = shapely.geometry.Point(0, 0)
     the_tree.geometry = the_geometry_of_the_center
     
   the_counter = 1
