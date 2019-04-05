@@ -49,6 +49,7 @@ def calculate_the_geometries(the_tree, the_counter):
   circle : r²(θ) - 2r(θ) * r° * cos(θ - φ) + r°² = a², center = (r°, φ), radius = a
   simple circle : r(θ) = 100
   simple straight line : θ = 45°
+  in cartesian coordinates : x = r cos(θ) + x° ; y = r sin(θ) + y° ; (x°,y°) = center of the polaroid coordinates
   """
   the_geometry_of_the_center = shapely.geometry.Point(0, 0)
   try:
