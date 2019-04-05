@@ -145,14 +145,16 @@ http.createServer(function(req, res) {
     };
 
     var the_points_datasource = new mapnik.Datasource(options);
-    var the_points_layer = new mapnik.Layer('points\' layer');
+    var the_points_layer = new mapnik.Layer('points\' layer', "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs");
     the_points_layer.datasource = the_points_datasource;
     //the_points_layer.styles = ['lines', 'points'];
     the_points_layer.styles = ['lines'];
     map.add_layer(the_points_layer);
+    map.zoomToBox(bbox);
     
     console.log("creating the image …");
-    map.render(bbox, function(err,im) {
+    var the_image__for_the_map = new mapnik.Image(256, 256);
+    map.render(the_image__for_the_map, function(err,im) {
       if (err) {
         res.end(err.message);
       } else {
