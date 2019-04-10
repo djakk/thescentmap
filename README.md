@@ -1,4 +1,3 @@
----
 
 # FILENAME : please use your OpenClassrooms's name, available in your url.
 # Example: https://openclassrooms.com/membres/celinemartinet
@@ -68,4 +67,3 @@ projects:
 
     finished: false
 
----
