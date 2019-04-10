@@ -12,14 +12,12 @@ date: 2019-04-06 18:45
 
 # One line.
 # If you need more space, go to the next line and add 4 spaces on the left, as in 'description'.
-
 objective: Apprendre à maîtriser le langage Python et le framework Django.
 short_description: J'aime lire, la musique, le petit trekking sans prétention 
     en plus de l'apprentissage de la programmation.
 
 
 # don't touch that
-
 template: students
 description:
     J'étudie la programmation informatique afin de multiplier les cordes à mon arc pour
