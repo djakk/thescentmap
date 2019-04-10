@@ -20,8 +20,6 @@ short_description: J'aime lire, la musique, le petit trekking sans prétention
 # don't touch that
 template: students
 description:
-    J'étudie la programmation informatique afin de multiplier les cordes à mon arc pour
-    trouver une activité professionnelle variée dans laquelle exprimer mes compétences et en acquérir de nouvelles... et parce que j'aime ça.
 
 # image must be located in content/images/students
 # name should be the same as this file. Eg: celinemartinet.png
